@@ -1,0 +1,9 @@
+# Nix artifacts
+/result
+/.direnv/
+
+# Output artifacts
+/*.pdf
+
+# From typix `virtualPaths`
+/dist
