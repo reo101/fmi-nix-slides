@@ -29,6 +29,21 @@
       flake = false;
     };
 
+    nixos-artwork = {
+      url = "github:NixOS/nixos-artwork";
+      flake = false;
+    };
+
+    ruby-nix = {
+      url = "github:inscapist/ruby-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sublime-nix = {
+      url = "github:wmertens/sublime-nix";
+      flake = false;
+    };
+
     # Example of downloading icons from a non-flake source
     # font-awesome = {
     #   url = "github:FortAwesome/Font-Awesome";
@@ -77,7 +92,9 @@
               # "${pkgs.roboto}/share/fonts/truetype"
             ];
 
-            virtualPaths = [
+            virtualPaths = let
+              # nixos-artwork = pkgs.callPackage (import inputs.nixos-artwork) { };
+            in [
               # Add paths that must be locally accessible to typst here
               # {
               #   dest = "icons";
@@ -90,6 +107,27 @@
                   url = "https://syndamia.com/img/face.jpeg";
                   hash = "sha256-9RBlJfmegIyZGBiHIo+/E6z2RXqSDmDi5Bxd6/nCoYc=";
                 };
+              }
+              {
+                dest = "./dist/nixos-artwork/";
+                src = "${inputs.nixos-artwork}";
+              }
+              {
+                dest = "./dist/sublime-nix";
+                src = "${inputs.sublime-nix}";
+              }
+              {
+                dest = "./dist/nix.sublime-syntax";
+                src = ./nix.sublime-syntax;
+                # src = pkgs.runCommand "nix.sublime-syntax" {
+                #   buildInputs = [
+                #     (pkgs.callPackage ./nix/sublime_syntax_convertor.nix { })
+                #   ];
+                # } ''
+                #   cp "${inputs.sublime-nix}/nix.tmLanguage" .
+                #   sublime_syntax_convertor .
+                #   cp nix.sublime-syntax $out
+                # '';
               }
             ];
           };
@@ -116,7 +154,9 @@
             inherit build-drv build-script watch-script;
           };
 
-          packages.default = build-drv;
+          packages = {
+            default = build-drv;
+          };
 
           apps = rec {
             default = watch;
@@ -130,18 +170,30 @@
             };
           };
 
-          devShells.default = typixLib.devShell {
-            inherit (commonArgs) fontPaths virtualPaths;
-            packages = [
-              # WARNING: Don't run `typst-build` directly, instead use `nix run .#build`
-              # See https://github.com/loqusion/typix/issues/2
-              # build-script
-              watch-script
-              # More packages can be added here, like typstfmt
-              pkgs.typstfmt
-              # pkgs.typst-lsp
-              pkgs.tinymist
-            ];
+          devShells = {
+            default = typixLib.devShell {
+              inherit (commonArgs) fontPaths virtualPaths;
+              packages = [
+                # HACK: `nix-monitored` doesn't work with `apps`
+                pkgs.nixVersions.latest
+
+                # WARNING: Don't run `typst-build` directly, instead use `nix run .#build`
+                # See https://github.com/loqusion/typix/issues/2
+                # build-script
+                watch-script
+                # More packages can be added here, like typstfmt
+                pkgs.typstfmt
+                # pkgs.typst-lsp
+                pkgs.tinymist
+              ];
+            };
+            sublime_syntax_convertor = let
+              sublime_syntax_convertor = (pkgs.callPackage ./nix/sublime_syntax_convertor.nix {
+                inherit (inputs) ruby-nix;
+              });
+            in pkgs.mkShell {
+                buildInputs = [];
+            };
           };
         };
     });

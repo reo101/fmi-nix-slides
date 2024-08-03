@@ -4,6 +4,7 @@
 
 # Output artifacts
 /*.pdf
+/target
 
 # From typix `virtualPaths`
 /dist

@@ -18,6 +18,22 @@
         "type": "github"
       }
     },
+    "nixos-artwork": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1719676066,
+        "narHash": "sha256-78FyNyGtDZogJUWcCT6A/T2MK87nGN/muC7ANH1b1V8=",
+        "owner": "NixOS",
+        "repo": "nixos-artwork",
+        "rev": "de03e887f03037e7e781a678b57fdae603c9ca20",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixos-artwork",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1721379653,
@@ -49,9 +65,48 @@
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
+        "nixos-artwork": "nixos-artwork",
         "nixpkgs": "nixpkgs",
+        "ruby-nix": "ruby-nix",
+        "sublime-nix": "sublime-nix",
         "typix": "typix",
         "typst-packages": "typst-packages"
+      }
+    },
+    "ruby-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1718787332,
+        "narHash": "sha256-dKjPNvFGORNFemXHsiaYx1Yn9+EtoqzURPnGgnrUoAI=",
+        "owner": "inscapist",
+        "repo": "ruby-nix",
+        "rev": "caea025dbdbebe7e1010f6a279a7f4f1a9c86789",
+        "type": "github"
+      },
+      "original": {
+        "owner": "inscapist",
+        "repo": "ruby-nix",
+        "type": "github"
+      }
+    },
+    "sublime-nix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1544185249,
+        "narHash": "sha256-ojb9xg26OL0kOZfcYXWIIS0efpHPFwlIwKklclmrUTc=",
+        "owner": "wmertens",
+        "repo": "sublime-nix",
+        "rev": "9032bd613746b9c135223fd6f26a5fa555f18946",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wmertens",
+        "repo": "sublime-nix",
+        "type": "github"
       }
     },
     "typix": {
