@@ -4,6 +4,5 @@
 
 # Output artifacts
 /*.pdf
-
-# From typix `virtualPaths`
-/dist
+/*.html
+/build/

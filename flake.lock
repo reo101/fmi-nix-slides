@@ -49,46 +49,7 @@
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "nixpkgs": "nixpkgs",
-        "typix": "typix",
-        "typst-packages": "typst-packages"
-      }
-    },
-    "typix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1720903122,
-        "narHash": "sha256-Unzk2jZrncMTraTmbqRKgiXupKV2mx1fGm5yWhHOJjk=",
-        "owner": "loqusion",
-        "repo": "typix",
-        "rev": "b4c38bc55ac2b46ea349bddfd535cc7e483b0a90",
-        "type": "github"
-      },
-      "original": {
-        "owner": "loqusion",
-        "ref": "0.1.5",
-        "repo": "typix",
-        "type": "github"
-      }
-    },
-    "typst-packages": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1721914800,
-        "narHash": "sha256-bikISM3tAtPbAfQ+/dv7cEdPwIYr4vsuY5sVswvvEuw=",
-        "owner": "typst",
-        "repo": "packages",
-        "rev": "3f369d2ea0e63baf58bd43ca2c399ea51aa7735e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "typst",
-        "repo": "packages",
-        "type": "github"
+        "nixpkgs": "nixpkgs"
       }
     }
   },
