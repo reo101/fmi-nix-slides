@@ -28,7 +28,13 @@
               just
               marksman
               pandoc
-              texliveSmall
+              (texlive.combine {
+                inherit (texlive)
+                  scheme-small
+                  babel-bulgarian
+                  cyrillic
+                  ;
+              })
             ];
           };
         };
