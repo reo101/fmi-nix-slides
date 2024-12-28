@@ -2,7 +2,7 @@ alias b := build
 
 [no-cd]
 build FORMAT="beamer" THEME="Boadilla":
-  pandoc -t {{FORMAT}} -V theme:{{THEME}} --pdf-engine=xelatex -V mainfont="CMU Serif" -s main.md -o output.pdf
+  pandoc -t {{FORMAT}} -V theme:{{THEME}} --pdf-engine=xelatex -V mainfont="CMU Serif" -V monofont="FreeMono" -s main.md -o output.pdf
 
 notes:
   nvim -V1 -Es -u '~/.config/nvim/init.lua' +":Neorg export to-file ./notes/structure.md" ./notes/structure.norg
