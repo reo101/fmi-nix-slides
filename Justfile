@@ -29,7 +29,8 @@ build input=join(".", "main.md") output_dir="." *EXTRA_ARGS="":
   fi
 
   output_name="{{parent_directory(absolute_path(join(invocation_directory(), input)))}}"
-  output_name="{{join(output_dir, "${output_name##*/}.pdf")}}"
+  cd "$output_name"
+  output_name="{{absolute_path(join(output_dir, "${output_name##*/}.pdf"))}}"
   echo '"{{input}}" -> "'$output_name'"'
 
   pandoc --pdf-engine=xelatex -t beamer --slide-level=2       \
