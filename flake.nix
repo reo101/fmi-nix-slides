@@ -28,6 +28,7 @@
               just
               marksman
               pandoc
+              cm_unicode
               (texlive.combine {
                 inherit (texlive)
                   scheme-small
