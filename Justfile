@@ -32,7 +32,7 @@ build input=join(".", "main.md") output_dir="." *EXTRA_ARGS="":
   output_name="{{join(output_dir, "${output_name##*/}.pdf")}}"
   echo '"{{input}}" -> "'$output_name'"'
 
-  pandoc --pdf-engine=xelatex -t beamer                       \
+  pandoc --pdf-engine=xelatex -t beamer --slide-level=2       \
          --metadata-file="{{join(src_dir, "metadata.yaml")}}" \
          -s {{input}}                                         \
          -o "$output_name" {{EXTRA_ARGS}}
