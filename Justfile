@@ -6,8 +6,13 @@ alias b   := build
 alias bp  := build-presentable
 alias bs  := build-slide
 alias bps := build-presentable-slide
+alias bsp := build-presentable-slide
 alias ba  := build-all
 alias bap := build-all-presentable
+alias bpa := build-all-presentable
+
+alias build-slide-presentable := build-presentable-slide
+alias build-presentable-all   := build-all-presentable
 
 [no-cd]
 default:
